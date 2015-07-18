@@ -5,35 +5,35 @@ import (
 	"math"
 )
 
-type Node struct {
+type node struct {
 	Item interface{}
-	Next *Node
-	Prev *Node
+	Next *node
+	Prev *node
 }
 
 type List struct {
-	head *Node
-	tail *Node
+	head *node
+	tail *node
 	size int64
+}
+
+func newNode(item interface{}) *node {
+	return &node{
+		Item: item,
+		Next: nil,
+		Prev: nil,
+	}
 }
 
 func _init() *List {
 	l := &List{
-		head: &Node{},
-		tail: &Node{},
+		head: newNode(nil),
+		tail: newNode(nil),
 		size: 0,
 	}
 	l.head.Next = l.tail
 	l.tail.Prev = l.head
 	return l
-}
-
-func newNode(item interface{}) *Node {
-	return &Node{
-		Item: item,
-		Next: nil,
-		Prev: nil,
-	}
 }
 
 func New(size int64) (*List, error) {
@@ -76,13 +76,13 @@ func (l *List) MaxSize() int64 {
 
 func (l *List) Clear() {
 	l.size = 0
-	l.head = &Node{}
-	l.tail = &Node{}
+	l.head = &node{}
+	l.tail = &node{}
 	l.head.Next = l.tail
 	l.tail.Prev = l.head
 }
 
-func (l *List) getPos(pos int64) *Node {
+func (l *List) getPos(pos int64) *node {
 	p := l.head.Next
 	var i int64
 	for i = 0; i < pos; i++ {
