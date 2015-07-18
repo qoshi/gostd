@@ -70,5 +70,16 @@ func TestRemove2(t *testing.T) {
 }
 
 func TestPop(t *testing.T) {
-
+	l, _ := list.New(10)
+	for i := 0; i < 10; i++ {
+		l.PushBack(i)
+	}
+	for i := 0; i < 10; i++ {
+		if i%2 == 1 {
+			_ = l.PopBack()
+		} else {
+			_ = l.PopFront()
+		}
+		fmt.Println(l.Size(), l.Front(), l.Back())
+	}
 }
