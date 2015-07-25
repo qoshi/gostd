@@ -79,7 +79,7 @@ func (v *Vector) Insert(pos int64, val interface{}) {
 	v.arr[pos] = val
 }
 
-func (v *Vector) Erase(pos int64) error {
+func (v *Vector) Erase(pos int64) {
 	if v.size == 0 {
 		panic(errors.New("eraser element from an empty vectory"))
 	}
@@ -88,7 +88,6 @@ func (v *Vector) Erase(pos int64) error {
 	}
 	v.arr = append(v.arr[:pos], v.arr[pos+1:]...)
 	v.size--
-	return nil
 }
 
 func (v *Vector) PushBack(val interface{}) {
