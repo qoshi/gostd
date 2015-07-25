@@ -36,16 +36,16 @@ func _init() *List {
 	return l
 }
 
-func New(size int64) (*List, error) {
+func New(size int64) *List {
 	if size == 0 {
-		return _init(), nil
+		return _init()
 	}
 	if size < 0 {
-		return nil, errors.New("list size should never be negative")
+		panic(errors.New("list size should never be negative"))
 	}
 	head := _init()
 	//to do init the length
-	return head, nil
+	return head
 }
 
 func (l *List) Front() interface{} {
@@ -91,9 +91,9 @@ func (l *List) getPos(pos int64) *node {
 	return p
 }
 
-func (l *List) Insert(pos int64, val interface{}) error {
+func (l *List) Insert(pos int64, val interface{}) {
 	if pos < 0 || pos > l.size {
-		return errors.New("pos invalid")
+		panic(errors.New("pos invalid"))
 	}
 	node := newNode(val)
 	p := l.getPos(pos)
@@ -102,12 +102,11 @@ func (l *List) Insert(pos int64, val interface{}) error {
 	p.Prev.Next = node
 	p.Prev = node
 	l.size++
-	return nil
 }
 
-func (l *List) Erase(pos int64) error {
+func (l *List) Erase(pos int64) {
 	if pos < 0 || pos >= l.size {
-		errors.New("pos invalid")
+		panic(errors.New("pos invalid"))
 	}
 	p := l.getPos(pos)
 	p.Prev.Next = p.Next
@@ -115,12 +114,11 @@ func (l *List) Erase(pos int64) error {
 	p.Next = nil
 	p.Prev = nil
 	l.size--
-	return nil
 }
 
-func (l *List) EraseRange(start, end int64) error {
+func (l *List) EraseRange(start, end int64) {
 	if start < 0 || start >= end || end > l.size {
-		return errors.New("arguments invalid")
+		panic(errors.New("arguments invalid"))
 	}
 	p := l.getPos(start)
 	q := l.getPos(end)
@@ -129,7 +127,6 @@ func (l *List) EraseRange(start, end int64) error {
 	q.Prev.Next = nil
 	q.Prev = p.Prev
 	l.size -= end - start
-	return nil
 }
 
 func (l *List) PushBack(item interface{}) {
@@ -141,9 +138,9 @@ func (l *List) PushBack(item interface{}) {
 	l.size++
 }
 
-func (l *List) PopBack() error {
+func (l *List) PopBack() {
 	if l.size == 0 {
-		return errors.New("list size is zero")
+		panic(errors.New("list size is zero"))
 	}
 	p := l.tail.Prev
 	l.tail.Prev = p.Prev
@@ -151,7 +148,6 @@ func (l *List) PopBack() error {
 	l.size--
 	p.Next = nil
 	p.Prev = nil
-	return nil
 }
 
 func (l *List) PushFront(item interface{}) {
@@ -163,9 +159,9 @@ func (l *List) PushFront(item interface{}) {
 	l.size++
 }
 
-func (l *List) PopFront() error {
+func (l *List) PopFront() {
 	if l.size == 0 {
-		return errors.New("list size is zero")
+		panic(errors.New("list size is zero"))
 	}
 	p := l.head.Next
 	l.head.Next = p.Next
@@ -173,5 +169,4 @@ func (l *List) PopFront() error {
 	l.size--
 	p.Next = nil
 	p.Prev = nil
-	return nil
 }

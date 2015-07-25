@@ -7,7 +7,7 @@ import (
 )
 
 func TestCreateList1(t *testing.T) {
-	l, _ := list.New(10)
+	l := list.New(10)
 	for i := 0; i < 10; i++ {
 		l.PushBack(i)
 		fmt.Println(l.Size())
@@ -16,7 +16,7 @@ func TestCreateList1(t *testing.T) {
 }
 
 func TestCreateList2(t *testing.T) {
-	l, _ := list.New(10)
+	l := list.New(10)
 	for i := 0; i < 10; i++ {
 		l.PushFront(i)
 		fmt.Println(l.Size())
@@ -25,7 +25,7 @@ func TestCreateList2(t *testing.T) {
 }
 
 func TestCreateList3(t *testing.T) {
-	l, _ := list.New(10)
+	l := list.New(10)
 	for i := 0; i < 10; i++ {
 		l.Insert(int64(i), i)
 		fmt.Println(l.Size())
@@ -34,7 +34,7 @@ func TestCreateList3(t *testing.T) {
 }
 
 func TestRemove(t *testing.T) {
-	l, _ := list.New(10)
+	l := list.New(10)
 	for i := 0; i < 10; i++ {
 		l.PushBack(i)
 	}
@@ -55,7 +55,7 @@ func TestRemove(t *testing.T) {
 }
 
 func TestRemove2(t *testing.T) {
-	l, _ := list.New(10)
+	l := list.New(10)
 	for i := 0; i < 10; i++ {
 		l.PushBack(i)
 	}
@@ -70,15 +70,15 @@ func TestRemove2(t *testing.T) {
 }
 
 func TestPop(t *testing.T) {
-	l, _ := list.New(10)
+	l := list.New(10)
 	for i := 0; i < 10; i++ {
 		l.PushBack(i)
 	}
 	for i := 0; i < 10; i++ {
 		if i%2 == 1 {
-			_ = l.PopBack()
+			l.PopBack()
 		} else {
-			_ = l.PopFront()
+			l.PopFront()
 		}
 		fmt.Println(l.Size(), l.Front(), l.Back())
 	}

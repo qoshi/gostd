@@ -41,15 +41,14 @@ func (s *Stack) Push(item interface{}) {
 	s.size++
 }
 
-func (s *Stack) Pop() error {
+func (s *Stack) Pop() {
 	if s.front.Next == nil {
-		return errors.New("stack is empty")
+		panic(errors.New("stack is empty"))
 	}
 	p := s.front.Next
 	s.front.Next = p.Next
 	p.Next = nil
 	s.size--
-	return nil
 }
 
 func (s *Stack) Empty() bool {

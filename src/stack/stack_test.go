@@ -20,7 +20,7 @@ func TestCreateStack(t *testing.T) {
 	fmt.Println("~~~~~~")
 	fmt.Println(s.Size())
 	fmt.Println(s.Empty())
-	fmt.Println(s.Pop())
+	s.Pop()
 }
 
 func TestCreateStack1(t *testing.T) {
@@ -32,5 +32,5 @@ func TestCreateStack1(t *testing.T) {
 	}
 	fmt.Println(s.Size())
 	fmt.Println(s.Empty())
-	fmt.Println(s.Pop())
+	s.Pop()
 }
